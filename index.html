@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>Drum Kit</title>
+        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch&display=swap" rel="stylesheet">
+    </head>
+    <body onkeypress="hitKey(event)" onkeyup="release(event)">
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-12 title text-center">Piano</div>
+            </div>
+            <div class="row row-content">
+                
+                <div class="col-md-8 offset-md-2 align-self-center button-row"> 
+                    <div data-key="68" class="key text-center">
+                        <span>D</span>
+                        <div>C</div>
+                    </div>
+                    <div data-key="70" class="key text-center">
+                        <span>F</span>
+                        <div>D</div>
+                    </div>
+                    <div data-key="71" class="key text-center">
+                        <span>G</span>
+                        <div>E</div>
+                    </div>
+                    <div data-key="72" class="key text-center">
+                        <span>H</span>
+                        <div>F</div>
+                    </div>
+                    <div data-key="74" class="key text-center">
+                        <span>J</span>
+                        <div>G</div>
+                    </div>
+                    <div data-key="65" class="key text-center">
+                        <span>A</span>
+                        <div>A</div>
+                    </div>
+                    <div data-key="83" class="key text-center">
+                        <span>S</span>
+                        <div>B</div>
+                    </div>
+                    <div data-key="75" class="key text-center">
+                        <span>K</span>
+                        <div>C1</div>
+                    </div>
+                    <!-- <div data-key="76" class="key text-center">
+                        <span>L</span>
+                        <div>F</div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <audio data-key="83">
+            <source src="./Sounds/Piano note B.wav" type="audio/wav">
+        </audio>
+        <audio data-key="65">
+            <source src="./Sounds/Piano-note-A.wav" type="audio/wav">
+        </audio>
+        <audio data-key="68">
+            <source src="./Sounds/Piano note C.wav" type="audio/wav">
+        </audio>
+        <audio data-key="70">
+            <source src="./Sounds/Piano note D.wav" type="audio/wav">
+        </audio>
+        <audio data-key="72">
+            <source src="./Sounds/Piano note F.wav" type="audio/wav">
+        </audio>
+        <audio data-key="71">
+            <source src="./Sounds/Piano note E.wav" type="audio/wav">
+        </audio>
+        <audio data-key="75">
+            <source src="./Sounds/Piano note C1.wav" type="audio/wav">
+        </audio>
+        <audio data-key="74">
+            <source src="./Sounds/Piano note G.wav" type="audio/wav">
+        </audio>
+        <!-- <audio data-key="76">
+            <source src="./Sounds/Piano note F.wav" type="audio/wav">
+        </audio> -->
+    </body>
+    <script>
+
+        function hitKey(event){
+            var ele = document.querySelectorAll(`[data-key='${event.keyCode}']`);
+            if(ele[0] != undefined && ele[1]!=undefined){
+                ele[0].classList.add("play");
+                ele[1].currentTime = 0;
+                ele[1].play();
+            }
+        }
+
+        function release(event){
+            var ele = document.querySelector(`div[data-key='${event.keyCode}']`);
+            if(ele){
+                ele.classList.remove("play");
+            }
+        }
+    </script>
+</html>
